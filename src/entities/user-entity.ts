@@ -6,10 +6,13 @@ export class UserEntity {
   id: number;
 
   @Column()
-  username: string;
+  user_id: string;
 
   @Column()
   password: string;
+
+  @Column()
+  email: string;
 
   @Column()
   first_name: string;
@@ -18,7 +21,7 @@ export class UserEntity {
   last_name: string;
 
   @Column()
-  address: string;
+  address?: string;
 
   @Column()
   telephone: string;
