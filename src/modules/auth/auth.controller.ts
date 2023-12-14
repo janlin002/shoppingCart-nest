@@ -1,5 +1,5 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
 import { AuthBasicInfo } from './dto/authBasicInfo.dto';
@@ -9,22 +9,26 @@ import { AuthBasicInfo } from './dto/authBasicInfo.dto';
 export class AuthController {
   constructor(private readonly userService: AuthService) {}
 
-  // 登入
   @Post('login')
+  @ApiOperation({ summary: '登入' })
   async login(@Body() userBasicInfo: AuthBasicInfo) {
     return await this.userService.login(userBasicInfo);
   }
 
-  // 登出
   @Post('logout')
+  @ApiOperation({ summary: '登出' })
   async logout() {}
 
-  // 忘記密碼
+  @Post('forgetPassword')
+  @ApiOperation({ summary: '忘記密碼' })
+  async forgetPassword() {}
 
-  // 重設密碼
+  @Post('resetPassword')
+  @ApiOperation({ summary: '重設密碼' })
+  async resetPassword() {}
 
-  // 註冊
   @Post('register')
+  @ApiOperation({ summary: '註冊' })
   async register(@Body() userBasicInfo: AuthBasicInfo) {
     return await this.userService.register(userBasicInfo);
   }

@@ -22,6 +22,6 @@ PostgreSql
 ### plugins
 
 - nest
+- typeScript
 - typeORM
 - webSocket (custom service)
-- typeScript

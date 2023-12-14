@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 import { UserEntity } from './user-entity';
 
+// 所有訂單資料
 @Entity()
 export class ShoppingSessionEntity {
   @PrimaryGeneratedColumn('uuid')
