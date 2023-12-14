@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+import { Role } from 'src/types/enum';
+
 @Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -7,6 +9,13 @@ export class UserEntity {
 
   @Column()
   user_id: string;
+
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.buyer,
+  })
+  role: string;
 
   @Column()
   password: string;

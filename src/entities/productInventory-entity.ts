@@ -1,14 +1,26 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+} from 'typeorm';
+
 import { ProductDetailEntity } from './productDetail.entity';
+import { ProductEntity } from './product-entity';
 
 @Entity()
 export class ProductInventoryEntity {
-  @PrimaryGeneratedColumn('uuid')
-  @OneToOne(
-    () => ProductDetailEntity,
-    (productDetail) => productDetail.inventory_id,
-  )
-  id: number;
+  @PrimaryGeneratedColumn()
+  // @OneToOne(
+  //   () => ProductDetailEntity,
+  //   (productDetail) => productDetail.inventory_id,
+  // )
+  id: string;
+
+  @OneToOne(() => ProductEntity, (product) => product.id)
+  @JoinColumn()
+  product: ProductEntity;
 
   @Column()
   quantity: number;

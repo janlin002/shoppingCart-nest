@@ -15,7 +15,7 @@ export class ProductDetailEntity {
   category_id: number;
 
   @Column()
-  inventory_id: string;
+  inventory_id: number;
 
   @Column()
   @OneToOne(() => ProductDiscountEntity)

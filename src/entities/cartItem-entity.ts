@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  DeleteDateColumn,
+  ManyToOne,
+} from 'typeorm';
 import { ProductEntity } from './product-entity';
 
 @Entity()
@@ -10,15 +17,15 @@ export class CartItemEntity {
   session_id: string;
 
   @Column()
-  @OneToOne(() => ProductEntity)
+  @ManyToOne(() => ProductEntity, (product) => product.id)
   product_id: string;
 
   @Column()
   quantity: string;
 
-  @Column()
+  @DeleteDateColumn()
   create_at: Date;
 
-  @Column()
+  @DeleteDateColumn()
   modified_at: Date;
 }
