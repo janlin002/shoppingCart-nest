@@ -1,9 +1,20 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  PrimaryColumn,
+} from 'typeorm';
+
+import { ProductDetailEntity } from './productDetail.entity';
 
 @Entity()
 export class ProductCategoryEntity {
   @PrimaryGeneratedColumn('uuid')
   id: number;
+
+  @Column()
+  category_id: ProductDetailEntity;
 
   @Column()
   name: string;

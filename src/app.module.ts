@@ -4,9 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { CartModule } from './modules/cart/cart.module';
-import { InventoryModule } from './modules/inventory/inventory.module';
 import { ChatGateway } from './webSocket/webSocket.gateway';
 import { ProductModule } from './modules/product/product.module';
+
+import { UserEntity } from './entities/user-entity';
 
 @Module({
   imports: [
@@ -20,10 +21,10 @@ import { ProductModule } from './modules/product/product.module';
       password: 'postgres',
       database: 'postgres',
       autoLoadEntities: true,
+      entities: [UserEntity],
       synchronize: true,
     }),
     CartModule,
-    InventoryModule,
     ProductModule,
   ],
   controllers: [],
