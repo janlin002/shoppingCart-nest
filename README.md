@@ -9,11 +9,24 @@
 - Nest.js
 - Prisma
 - PostgreSql
+- TypeScript
+
+---
 
 - JWT
 - Bcrypt
 
+---
+
 - Class-Validation
 - Class-Translate
 
+---
+
 - Swagger
+
+### migrate
+
+```bash
+npx prisma migrate dev --name [migrate-name]
+```
