@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,4 +15,74 @@ model Article {
   published   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  role         Role
+  user_id      Int
+  password     Int
+  email        String
+  first_name   String
+  last_name    String
+  address      String
+  telephone    String
+  create_at    DateTime       @default(now())
+  update_at    DateTime       @updatedAt
+  deleted_at   DateTime?
+  ShoppingCart ShoppingCart[]
+}
+
+model ShoppingCart {
+  id        Int           @id @default(autoincrement())
+  user      User          @relation(fields: [user_id], references: [id])
+  user_id   Int           @unique
+  order     ProductDetail @relation(fields: [order_id], references: [id])
+  order_id  Int
+  create_at DateTime      @default(now())
+  update_at DateTime      @updatedAt
+}
+
+model ProductDetail {
+  id           Int             @id @default(autoincrement())
+  name         String
+  description  String
+  quantity     Int
+  category     ProductCategory @relation(fields: [category_id], references: [id])
+  category_id  String
+  discount     ProductDiscount @relation(fields: [discount_id], references: [id])
+  discount_id  Int
+  create_at    DateTime        @default(now())
+  update_at    DateTime        @updatedAt
+  deleted_at   DateTime?
+  price        Float
+  ShoppingCart ShoppingCart[]
+}
+
+model ProductCategory {
+  id            String          @id
+  name          String
+  description   String
+  create_at     DateTime        @default(now())
+  update_at     DateTime        @updatedAt
+  deleted_at    DateTime?
+  ProductDetail ProductDetail[]
+}
+
+model ProductDiscount {
+  id               Int             @id @default(autoincrement())
+  name             String
+  description      String
+  discount_percent Float
+  active           Boolean
+  create_at        DateTime        @default(now())
+  update_at        DateTime        @updatedAt
+  deleted_at       DateTime?
+  ProductDetail    ProductDetail[]
+}
+
+// enums
+enum Role {
+  SELLER
+  BUYER
 }
